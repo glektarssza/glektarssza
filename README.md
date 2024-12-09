@@ -18,11 +18,15 @@ Hey there! I'm a software developer who enjoys working with both web technologie
 ## 📫 Get in Touch
 
 - **Email:** glek@glektarssza.com
-- **Website:** [glektarssza.com](https://glektarssza.com)
 
 ## 📊 GitHub Stats
 
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=glektarssza&show_icons=true&theme=dark)
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height="200" align="center" src="https://github-readme-stats.vercel.app/api?username=glektarssza&theme=github_dark_dimmed&hide_rank=true" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height="200" align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=glektarssza&theme=github_dark_dimmed&layout=compact&langs_count=8" />
+</a>
 
 ---
 All my projects are covered under custom licensing. Please check individual repositories for license details.
