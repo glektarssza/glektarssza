@@ -1,0 +1,73 @@
+name: Update Cards
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: |
+          The Git reference to build.
+
+          This can be any valid commit-like value (e.g. a branch, a tag, or a
+          commit).
+
+          Defaults to the fully formed reference of the branch or tag that
+          triggered the workflow is used. If that is unavailable the falls back
+          to the SHA that caused the workflow to be triggered. If that is
+          unavailable the repository default branch is used.
+        type: string
+        required: false
+        default: ${{github.ref || github.sha || github.repository.master_branch}}
+    secrets:
+      github-token:
+        description: |
+          The token to use to make authenticated calls to the GitHub API.
+        required: false
+jobs:
+  update-cards:
+    name: Update Cards
+    runs-on: ubuntu-latest
+    permissions:
+      # -- Needed to write the updated cards to repository
+      contents: write
+    concurrency:
+      group: update-cards
+      cancel-in-progress: false
+    steps:
+      - id: checkout-repository
+        name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{github.ref || github.sha || github.event.repository.master_branch}}
+          token: ${{secrets.GITHUB_TOKEN}}
+          lfs: true
+      - id: update-dark-stats-card
+        name: Update dark mode stats card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=${{github.repository_owner}}&theme=github_dark_dimmed&hide_rank=true
+          path: cards/dark/stats.svg
+          token: ${{secrets.GITHUB_TOKEN}}
+      - id: update-light-stats-card
+        name: Update light mode stats card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=${{github.repository_owner}}&theme=default&hide_rank=true
+          path: cards/light/stats.svg
+          token: ${{secrets.GITHUB_TOKEN}}
+      - id: update-dark-top-langs-card
+        name: Update dark mode stats card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=${{github.repository_owner}}&theme=github_dark_dimmed&hide_rank=true
+          path: cards/dark/top-langs.svg
+          token: ${{secrets.GITHUB_TOKEN}}
+      - id: update-light-top-langs-card
+        name: Update light mode top langs card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=${{github.repository_owner}}&theme=default&hide_rank=true
+          path: cards/light/top-langs.svg
+          token: ${{secrets.GITHUB_TOKEN}}
