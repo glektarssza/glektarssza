@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Manual Update Cards
+on:
+  workflow_dispatch:
+jobs:
+  update-cards:
+    name: Update Cards
+    permissions:
+      # -- Needed to write the updated cards to repository
+      contents: write
+    uses: ./.github/workflows/update-cards.yaml
+    with:
+      ref: ${{github.ref}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}
+      deploy-key: ${{secrets.DEPLOY_KEY}}
