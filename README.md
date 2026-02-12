@@ -54,12 +54,42 @@ it!
 
 ## 📊 GitHub Stats ##
 
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img height="200" align="center" src="https://github-readme-stats.vercel.app/api?username=glektarssza&theme=github_dark_dimmed&hide_rank=true" />
-</a>
-<a href="https://github.com/anuraghazra/convoychat">
-  <img height="200" align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=glektarssza&theme=github_dark_dimmed&layout=compact&langs_count=8" />
-</a>
+<picture>
+  <source
+    srcset="./cards/dark/stats.svg"
+    media="(prefers-color-scheme: dark)"
+    type="image/svg+xml"
+  />
+  <source
+    srcset="./cards/light/stats.svg"
+    media="(prefers-color-scheme: light)"
+    type="image/svg+xml"
+  />
+  <source
+    srcset="./cards/light/stats.svg"
+    media="(prefers-color-scheme: no-preference)"
+    type="image/svg+xml"
+  />
+  <img height="200" align="center" src="./cards/light/stats.svg" alt="G'lek's GitHub Stats" />
+</picture>
+<picture>
+  <source
+    srcset="./cards/dark/top-langs.svg"
+    media="(prefers-color-scheme: dark)"
+    type="image/svg+xml"
+  />
+  <source
+    srcset="./cards/light/top-langs.svg"
+    media="(prefers-color-scheme: light)"
+    type="image/svg+xml"
+  />
+  <source
+    srcset="./cards/light/top-langs.svg"
+    media="(prefers-color-scheme: no-preference)"
+    type="image/svg+xml"
+  />
+  <img height="200" align="center" src="./cards/light/stats.svg" alt="G'lek's Top Languages" />
+</picture>
 
 ---
 
