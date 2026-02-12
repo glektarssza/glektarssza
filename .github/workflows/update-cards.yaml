@@ -21,6 +21,10 @@ on:
         description: |
           The token to use to make authenticated calls to the GitHub API.
         required: false
+      deploy-key:
+        description: |
+          The SSH key to be used to push to the repository.
+        required: true
 jobs:
   update-cards:
     name: Update Cards
@@ -39,6 +43,12 @@ jobs:
           ref: ${{github.ref || github.sha || github.event.repository.master_branch}}
           token: ${{secrets.GITHUB_TOKEN}}
           lfs: true
+          ssh-key: ${{secrets.deploy-key}}
+      - id: update-git-config
+        name: Update Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - id: update-dark-stats-card
         name: Update dark mode stats card
         uses: readme-tools/github-readme-stats-action@v1
@@ -71,3 +81,11 @@ jobs:
           options: username=${{github.repository_owner}}&theme=default&hide_rank=true
           path: cards/light/top-langs.svg
           token: ${{secrets.GITHUB_TOKEN}}
+      - id: update-repository
+        name: Update repository
+        run: |
+          git add cards && \
+          git commit -m "Updated profile cards." && \
+          git push origin && \
+          echo "Updated profile cards" || \
+          echo "Nothing to push..."
