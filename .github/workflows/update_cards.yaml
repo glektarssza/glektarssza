@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Update Cards
 on:
   workflow_call:
@@ -34,7 +35,7 @@ jobs:
       contents: write
     concurrency:
       group: update-cards
-      cancel-in-progress: false
+      cancel-in-progress: true
     steps:
       - id: checkout-repository
         name: Checkout repository
